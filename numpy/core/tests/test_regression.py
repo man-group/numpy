@@ -1917,6 +1917,12 @@ class TestRegression(TestCase):
         assert_(c.flags.fortran)
         assert_(c.flags.f_contiguous)
 
+    def test_setArrayFromSequence_fails(self):
+        arr = np.array([[1,2,3],[4,5,6]])
+        def f(a):
+            a[:,1] = []
+        assert_raises(ValueError, f, arr)
+
 
 if __name__ == "__main__":
     run_module_suite()
